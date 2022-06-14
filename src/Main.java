@@ -7,6 +7,9 @@ import java.util.zip.ZipOutputStream;
 
 
 public class Main {
+
+    final static String prefix = ("C:" + File.separator + "Users" + File.separator + "i.grachev" +
+            File.separator + "IdeaProjects" + File.separator + "Games" + File.separator + "savegames");
     public static void main(String[] args) {
         GameProgress progress1 = new GameProgress(96, 25, 23, 200);
         GameProgress progress2 = new GameProgress(100, 42, 27, 265);
@@ -17,9 +20,9 @@ public class Main {
         gameProgress[1] = progress2;
         gameProgress[2] = progress3;
 
-        File save1 = new File("C://Users//i.grachev//IdeaProjects//Games//savegames//save1.dat");
-        File save2 = new File("C://Users//i.grachev//IdeaProjects//Games//savegames//save2.dat");
-        File save3 = new File("C://Users//i.grachev//IdeaProjects//Games//savegames//save3.dat");
+        File save1 = new File(prefix + File.separator + "save1.dat");
+        File save2 = new File(prefix + File.separator + "save2.dat");
+        File save3 = new File(prefix + File.separator + "save3.dat");
 
         ArrayList<String> list = new ArrayList<>();
         list.add(save1.getAbsolutePath());
@@ -28,14 +31,14 @@ public class Main {
 
         saveGame(list, gameProgress);
 
-        zipFiles("C://Users//i.grachev//IdeaProjects//Games//savegames//zip.zip", list);
+        zipFiles(prefix + File.separator + "zip.zip", list);
 
         deleteFile(save1, save1.getAbsolutePath());
         deleteFile(save2, save2.getAbsolutePath());
         deleteFile(save3, save3.getAbsolutePath());
 
-        openZip("C://Users//i.grachev//IdeaProjects//Games//savegames//zip.zip",
-                "C://Users//i.grachev//IdeaProjects//Games//savegames//");
+        openZip(prefix + File.separator + "zip.zip",
+                prefix + File.separator);
 
         System.out.println(getProgress(save1.getAbsolutePath()));
 
